@@ -186,12 +186,12 @@ class KAISTBot(BaseBot):
 
         else : #loopback
             # open a conversation gRPC channel
-            channel = grpc.insecure_channel('localhost:50051')
-            stub = conversation_pb2_grpc.ConversationStub(channel)
-            chatData = conversation_pb2.ChatData(team_index=team_index,room_index=room_index,chat=chat.content)
-            response = stub.makeChat(chatData)
+            #channel = grpc.insecure_channel('localhost:50051')
+            #stub = conversation_pb2_grpc.ConversationStub(channel)
+            #chatData = conversation_pb2.ChatData(team_index=team_index,room_index=room_index,chat=chat.content)
+            #response = stub.makeChat(chatData)
 
-            self.service.post_chat(team_index, room_index, response.chat, 0)
+            #self.service.post_chat(team_index, room_index, response.chat, 0)
 
 
 ################# estsoft examples, as seen. ############################
