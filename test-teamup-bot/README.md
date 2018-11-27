@@ -1,3 +1,5 @@
+# 현재 테스트 버전이니 사용하지 마시길 바람
+
 # KAIST Integration Server v0.1
 - Python teamup bot client
 - KAIST Bot을 위한 Integration 시스템 추가 (quarry@kaist.ac.kr)
