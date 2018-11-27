@@ -191,7 +191,7 @@ class KAISTBot(BaseBot):
             chatData = conversation_pb2.ChatData(team_index=team_index,room_index=room_index,chat=chat.content)
             response = stub.makeChat(chatData)
 
-            self.service.post_chat(team_index, room_index, "conversation test: " + str(response.chat), 0)
+            self.service.post_chat(team_index, room_index, response.chat, 0)
 
 
 ################# estsoft examples, as seen. ############################
