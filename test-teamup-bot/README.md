@@ -1,4 +1,4 @@
-# gs-python-teamup-bot
+# KAIST Integration Server v0.1
 - Python teamup bot client
 - KAIST Bot을 위한 Integration 시스템 추가 (quarry@kaist.ac.kr)
 
@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 client id / client secret 발급 문의 (https://tmup.com/main/developer)
 
-## 실행
+## 실행(2개의 프로그램 실행해야 함)
 main.py 실행
 /tossBot/tossChatDataServer.py 실행 (새창을 열어서)
 
