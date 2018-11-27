@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package iclab.abc.enum;
+
+option java_package = "kaist.iclab.abc.protos";
+option java_outer_classname = "EnumProtos";
+
+
+enum GenderType {
+    GENDER_UNKNOWN = 0;
+    GENDER_MALE = 1;
+    GENDER_FEMALE = 2;
+}
+
+enum RawDataType {
+    ALL = 0;
+    APP_USAGE_EVENT = 1;
+    APP_USAGE_STAT = 2;
+    BATTERY = 3;
+    CALL_LOG = 4;
+    CONNECTIVITY = 5;
+    DATA_TRAFFIC = 6;
+    DEVICE_EVENT = 7;
+    LOCATION = 8;
+    MEDIA = 9;
+    MESSAGE = 10;
+    NOTIFICATION = 11;
+    PHYSICAL_ACTIVITY_EVENT = 12;
+    WIFI = 13;
+    PHYSICAL_STATUS = 14;
+    RAW_SENSOR = 15;
+    WEATHER = 16;
+    EMOTIONAL_STATUS = 17;
+    EXPERIENCE_SAMPLE = 18;
+    BINARY_FILE = 19;
+    INSTALLED_APP = 20;
+    PHYSICAL_ACTIVITY_TRANSITION = 21;
+}
+
+enum DataSourceType {
+    UNKNOWN = 0;
+    PHONE = 1;
+    WRIST_WORN = 2;
+    TABLET = 3;
+    COMPUTER = 4;
+    IOT_SENSOR = 5;
+    WEB = 6;
+}
+

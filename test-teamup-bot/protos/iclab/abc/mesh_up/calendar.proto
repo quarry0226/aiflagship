@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package iclab.abc.external.calendar;
+
+import "iclab/abc/common.proto";
+
+option java_package = "kaist.iclab.abc.protos";
+option java_outer_classname = "CalendarProtos";
+
+enum CalendarEventStatus {
+    STATUS_UNDEFINED = 0;
+    STATUS_CONFIRMED = 1;
+    STATUS_TENTATIVE = 2;
+    STATUS_CANCELLED = 3;
+}
+
+enum CalendarReminderMethod {
+    REMINDER_UNDEFINED = 0;
+    REMINDER_EMAIL = 1;
+    REMINDER_SMS = 2;
+    REMINDER_POPUP = 3;
+}
+
+message GoogleCalendar {
+    iclab.abc.common.StringValue id = 1;
+    iclab.abc.common.StringValue summary = 2;
+    iclab.abc.common.StringValue description = 3;
+    iclab.abc.common.StringValue location = 4;
+    iclab.abc.common.StringValue timezone = 5;
+}
+
+message GoogleCalendarEvent {
+    iclab.abc.common.StringValue id = 1;
+    CalendarEventStatus status = 2;
+    iclab.abc.common.StringValue html_link = 3;
+    iclab.abc.common.DateTime created = 4;
+    iclab.abc.common.DateTime updated = 5;
+    iclab.abc.common.StringValue summary = 6;
+    iclab.abc.common.StringValue description = 7;
+    iclab.abc.common.StringValue location = 8;
+    GoogleCalendarUser creator = 9;
+    GoogleCalendarUser organizer = 10;
+    iclab.abc.common.DateTime start = 11;
+    iclab.abc.common.StringValue start_timezone = 12;
+    iclab.abc.common.DateTime end = 13;
+    iclab.abc.common.StringValue end_timezone = 14;
+    repeated GoogleCalendarUser attendees = 15;
+    iclab.abc.common.BoolValue reminder_use_default = 16;
+    repeated GoogleCalendarReminder reminder = 17;
+}
+
+message GoogleCalendarUser {
+    iclab.abc.common.StringValue id = 1;
+    iclab.abc.common.StringValue email = 2;
+    iclab.abc.common.StringValue display_name = 3;
+    iclab.abc.common.BoolValue self = 4;
+}
+
+message GoogleCalendarReminder {
+    CalendarReminderMethod method = 1;
+    iclab.abc.common.Int32Value minutes = 2;
+}
+
+message GoogleCalendarListQuery {
+    string email = 1;
+}
+
+message GoogleCalendarSingleQuery {
+    string email = 1;
+    string calendar_id = 2;
+}
+
+message GoogleCalendarPostQuery {
+    string email = 1;
+    GoogleCalendar calendar = 2;
+}
+
+message GoogleCalendarEventListQuery {
+    string email = 1;
+    string calendar_id = 2;
+    
+}
+
+message GoogleCalendarEventSingleQuery {
+    string email = 1;
+    string calendar_id = 2;
+    string event_id = 3;
+}
+
+message GoogleCalendarEventPostQuery {
+    string email = 1;
+    string calendar_id = 2;
+    GoogleCalendarEvent event = 3;
+}
+
+service GoogleCalendarService {
+    rpc ListGoogleCalendar(GoogleCalendarListQuery) returns (stream GoogleCalendar) {}
+    rpc GetGoogleCalendar(GoogleCalendarSingleQuery) returns (GoogleCalendar) {}
+    rpc CreateGoogleCalendar(GoogleCalendarPostQuery) returns (GoogleCalendar) {}
+    rpc UpdateGoogleCalendar(GoogleCalendarPostQuery) returns (GoogleCalendar) {}
+    rpc DeleteGoogleCalendar(GoogleCalendarSingleQuery) returns (iclab.abc.common.Empty) {}
+
+    rpc ListGoogleCalendarEvent(GoogleCalendarEventListQuery) returns (stream GoogleCalendarEvent) {}
+    rpc GetGoogleCalendarEvent(GoogleCalendarEventSingleQuery) returns (GoogleCalendarEvent) {}
+    rpc CreateGoogleCalendarEvent(GoogleCalendarEventPostQuery) returns (GoogleCalendarEvent) {}
+    rpc UpdateGoogleCalendarEvent(GoogleCalendarEventPostQuery) returns (GoogleCalendarEvent) {}
+    rpc DeleteGoogleCalendarEvent(GoogleCalendarEventSingleQuery) returns (iclab.abc.common.Empty) {}
+}

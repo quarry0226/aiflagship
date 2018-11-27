@@ -1,0 +1,13 @@
+certifi
+chardet
+gevent
+greenlet
+grequests
+idna
+oauthlib
+requests
+urllib3
+grpcio
+grpcio-tools
+google-api-python-client
+oauth2client

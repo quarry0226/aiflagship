@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package iclab.abc.common;
+
+import "iclab/abc/enum.proto";
+
+option java_package = "kaist.iclab.abc.protos";
+option java_outer_classname = "CommonProtos";
+
+message Time {
+    int64 timestamp = 1;
+    float utcoffset = 2;
+}
+
+message Date {
+    int32 year = 1;
+    int32 month = 2;
+    int32 day = 3;
+}
+
+message DateTime {
+    int32 year = 1;
+    int32 month = 2;
+    int32 day = 3;
+    int32 hour = 4;
+    int32 minute = 5;
+    int32 second = 6;
+    int32 millisecond = 7;
+}
+
+message LocalTime {
+    int32 hour = 1;
+    int32 min = 2;
+    int32 second = 3;
+}
+
+message TimeConstraint {
+    Time from_time = 1;
+    Time to_time = 2;
+}
+
+message Empty {
+    
+}
+
+message BoolValue {
+    bool value = 1;
+}
+
+message StringValue {
+    string value = 1;
+}
+
+message Int32Value {
+    int32 value = 1;
+}
+
+message Int64Value {
+    int64 value = 1;
+}
+
+message FloatValue {
+    float value = 1;
+}
+
+message Log {
+    Time time = 1;
+    string email = 2;
+    iclab.abc.enum.DataSourceType source_type = 3;
+    string version = 4;
+    string tag = 5;
+    string message = 6;
+}
+
+message AppVersion {
+    iclab.abc.enum.DataSourceType source_type = 1;
+    string version = 2;
+    string url = 3;
+}

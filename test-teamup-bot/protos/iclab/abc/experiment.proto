@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package iclab.abc.experiment;
+
+import "iclab/abc/common.proto";
+import "iclab/abc/enum.proto";
+
+option java_package = "kaist.iclab.abc.protos";
+option java_outer_classname = "ExperimentProtos";
+
+message Subject {
+    string email = 1;
+    iclab.abc.common.Date birth_date = 2;
+    iclab.abc.enum.GenderType gender = 3;
+    string phone_number = 4;
+    string name = 5;
+    string affiliation = 6;
+    string experiment_uuid = 7;
+    string experiment_group = 8;
+    int64 participated_timestamp = 9;
+    int64 dropout_timestamp = 10;
+    string survey = 11;
+}
+
+message ExperimentBasic {
+    string uuid = 1;
+    int64 registered_timestamp = 2;
+    int64 deadline_timestamp = 3;
+    string title = 4;
+    string compensation = 5;
+    int32 max_subjects = 6;
+    int32 current_subjects = 7;
+    string affiliation = 8;
+}
+
+message ExperimentConstraint {
+    bool is_opened = 1;
+    int64 duration_in_hour = 2;
+    bool contains_weekend = 3;
+    iclab.abc.common.LocalTime daily_start_time = 4;
+    iclab.abc.common.LocalTime daily_end_time = 5;
+    bool requires_device_event_and_traffic = 6;
+    bool requires_location_and_activity = 7;
+    bool requires_content_providers = 8;
+    bool requires_notification_received = 9;
+    bool requires_app_usage = 10;
+    bool requires_ambient_sound = 11;
+    bool requires_google_fitness = 12;
+}
+
+message Experimenter {
+    string web_site = 1;
+    string name = 2;
+    string email = 3;
+    string phone_number = 4;
+}
+
+message ExperimentFull {
+    ExperimentBasic basic = 1;
+    ExperimentConstraint constraint = 2;
+    Experimenter experimenter = 3;
+    string description = 4;
+}
+
+message ExperimentEssential {
+    ExperimentBasic basic = 1;
+    ExperimentConstraint constraint = 2;
+}
+
+message ExperimentParticipated {
+    Subject subject = 1;
+    ExperimentConstraint constraint = 2;
+}

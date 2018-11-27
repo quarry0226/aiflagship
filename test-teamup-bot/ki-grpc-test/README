@@ -1,0 +1,2 @@
+# 코드 수정시에 아래와 같이 proto 컴파일
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. conversation.proto

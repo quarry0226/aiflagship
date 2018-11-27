@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package iclab.abc.external.iot;
+
+option java_package = "kaist.iclab.abc.protos";
+option java_outer_classname = "IotControlProtos";

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package iclab.abc.meshup;
+
+import "iclab/abc/common.proto";
+import "iclab/abc/resource.proto";
+
+option java_package = "kaist.iclab.abc.protos";
+option java_outer_classname = "MeshupProtos";
+
+message WeatherRequest {
+    iclab.abc.common.DateTime date_time = 1;
+    double latitude = 2;
+    double longitude = 3;
+}
+
+message WeatherResponse {
+    iclab.abc.common.Time time = 1;
+    iclab.abc.resource.Weather weather = 2;
+}
+
+service WeatherApi {
+    rpc GetWeather(WeatherRequest) returns (WeatherResponse) {}
+}

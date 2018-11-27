@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message ChatData {
+    int32 team_index = 1;
+    int32 room_index = 2;
+    string chat = 3;
+}
+
+service Conversation {
+    rpc makeChat(ChatData) returns (ChatData) {}
+}
