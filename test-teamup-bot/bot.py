@@ -38,13 +38,12 @@ class BaseBot:
     def handle_event(self, events):
         for event in events:
             if isinstance(event, ChatInitEvent):
-                #print(event.user_index)
                 self.handle_entered_room(event.team_index, event.room_index)
 
             elif isinstance(event, ChatMessageEvent):
                 chat = self.service.get_chat_summary(event.room_index,
                                                      event.msg_index)
-                if chat:
+                if chat and self.service.my_index != event.user_index:
                     self.handle_chat(event.team_index, event.room_index, chat)
 
             elif isinstance(event, UserDropEvent) \
@@ -146,11 +145,8 @@ class KAISTBot(BaseBot):
     def handle_entered_room(self, team_index, room_index):
         #print(str(team_index)+","+str(room_index))
         chat_user_index = self.service.get_my_room_info(room_index)
-        print(chat_user_index)
         chat_user_info = self.service.get_chat_user_info(chat_user_index, team_index)
-        print(chat_user_info)
-        print("tidx:"+str(team_index)+", rid:"+str(room_index))
-
+        
         self.service.post_chat(team_index, room_index, "안녕하세요. "+chat_user_info['name']+"님. 저는 KAIST 봇입니다.")
 
     def handle_chat(self, team_index, room_index, chat):
@@ -160,7 +156,6 @@ class KAISTBot(BaseBot):
         elif chat and chat.content == "cal":
             chat_user_index = self.service.get_my_room_info(room_index)
             chat_user_info = self.service.get_chat_user_info(chat_user_index, team_index)
-            print(chat_user_info)
             self.service.post_chat(team_index, room_index, chat_user_info['name']+"님. 캘린더 테스트를 실행합니다.")
             # Test
             try:
