@@ -10,7 +10,7 @@
 pip install -r requirements.txt
 ```
 
-### configuration.json 포맷
+### configuration.json 수정
 ```
 {
   "client_id": "Your client id",
@@ -24,8 +24,8 @@ pip install -r requirements.txt
 client id / client secret 발급 문의 (https://tmup.com/main/developer)
 
 ## 실행(2개의 프로그램 실행해야 함)
-main.py 실행
-/tossBot/tossChatDataServer.py 실행 (새창을 열어서)
+main.py 실행 : 메인 쓰레드를 통해 팀업과 시스템간 연결 제어
+/tossBot/tossChatDataServer.py 실행 (새창을 열어서) : 외부 대화시스템과 연계를 위한 대화 Toss 시스템
 
 
 ## api reference
